@@ -18,7 +18,8 @@ def generate_notes_audio(
     youtube_url: str, model_name: str, system_prompt: str, user_prompt: str
 ):
     audio_file_path = download_youtube_audio(dir_path=DIR_AUDIO_PATH, url=youtube_url)
-    base_name, file_name = extract_filename(audio_file_path)
+    base_name = os.path.splitext(os.path.basename(audio_file_path))[0]
+    file_name = os.path.basename(audio_file_path)
     logger.info(f"Uploading file...{base_name}")
     your_file = genai.upload_file(path=audio_file_path)
 
